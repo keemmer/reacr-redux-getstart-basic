@@ -1,17 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux';
+import { devToolsEnhancer } from 'redux-devtools-extension'
+
+
+
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { cartReducer } from './reducers/cartReducer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
+const store = createStore(cartReducer, devToolsEnhancer());
+
+
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
+    <Provider store={store} >
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode >
 );
 
 // If you want to start measuring performance in your app, pass a function

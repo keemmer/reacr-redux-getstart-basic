@@ -1,21 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux';
-import { devToolsEnhancer } from 'redux-devtools-extension'
-
+// import { devToolsEnhancer } from 'redux-devtools-extension'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import thunk from 'redux-thunk'
 
 
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { cartReducer } from './reducers/cartReducer';
+import { rootReducer } from './reducers/rootReducer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
-const store = createStore(cartReducer, devToolsEnhancer());
+const middlewares = [thunk]
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middlewares)));
 
 
 root.render(

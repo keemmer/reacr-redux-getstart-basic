@@ -85,7 +85,16 @@ p {
 }
 
 input {
-  margin: 5px 0;
+  margin: 8px 0;
+  padding: 0.4rem;
+  border: 1px solid #d7d7d7;
+  border-radius: 4px;
+  background: #fff;
+}
+input:focus {
+  outline: none !important;
+  border-color:#359ff5;
+
 }
 
 button {

@@ -14,18 +14,18 @@ export const users = [
 ]
 
 
-export function SignIn(username, password) {
+export function SignIn(email, password) {
     return new Promise((resolve, reject) => {
-        const foundUser = user.find((user) =>
-            user.email === username && user.password === password
+        const foundUser = users.find((user) =>
+            user.email === email && user.password === password
         )
         setTimeout(() => {
             if (foundUser) {
                 resolve(foundUser)
             } else {
-                reject('Username of Email is invalid')
+                reject('Email or password is invalid')
             }
-        }, 3000)
+        }, 2000)
     })
 
 }

@@ -1,11 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { setAuth } from '../actions/authActions'
+import { useNavigate } from 'react-router-dom'
 
 const Nav = () => {
     const carts = useSelector((state) => state.cart)
     const { user } = useSelector((state) => state.auth)
-
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    function handleSignout() {
+        dispatch(setAuth(null));
+        navigate("/product")
+    }
     return (
         <header className="head">
             <ul className="nav">
@@ -21,7 +28,7 @@ const Nav = () => {
                 {
                     user ? (
                         <li className="nav-list" >
-                            <button>Sign out</button>
+                            <button onClick={() => handleSignout()}>Sign out</button>
                         </li>
                     ) : (
                         <li className="nav-list" >
